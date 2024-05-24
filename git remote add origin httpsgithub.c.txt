@@ -1,3 +1,4 @@
-git remote add origin https://github.com/alivxo/DeliSandwich-Capstone2.git
-git branch -M main
-git push -u origin main
+To continue pushing code
+- git add .
+- git commit -m "(message)"
+- git push 
