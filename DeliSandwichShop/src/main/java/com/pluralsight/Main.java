@@ -1,11 +1,15 @@
 package com.pluralsight;
 
+import com.pluralsight.deliOrder.Sandwich;
+import com.pluralsight.deliOrder.SandwichOrder;
+
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static final Scanner scanner = new Scanner (System.in);
+
     public static void main(String[] args) {
         homeScreen();
     }
@@ -37,6 +41,7 @@ public class Main {
         }
 
     private static void orderScreen() {
+        SandwichOrder order = new Sandwich();
         String deliScreen = """
                 Welcome to Ice Spice Deli Screen
                 1. Add Sandwich
