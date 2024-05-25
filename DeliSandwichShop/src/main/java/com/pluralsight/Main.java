@@ -41,7 +41,7 @@ public class Main {
         }
 
     private static void orderScreen() {
-        SandwichOrder order = new Sandwich();
+        SandwichOrder order = new SandwichOrder();
         String deliScreen = """
                 Welcome to Ice Spice Deli Screen
                 1. Add Sandwich
