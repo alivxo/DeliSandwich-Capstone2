@@ -10,7 +10,7 @@ public class Sandwich {
     boolean toastedBread;
 
     public Sandwich(int sandwichSize, String toppings, String sauces, String bread,
-                    String meat, String cheese, boolean toastedBread) {
+                    String meat, String cheese, boolean toastedBread, String sauceChoice) {
         this.sandwichSize = sandwichSize;
         this.toppings = toppings;
         this.sauces = sauces;
