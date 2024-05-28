@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import com.pluralsight.deliOrder.Chips;
 import com.pluralsight.deliOrder.Drink;
 import com.pluralsight.deliOrder.Sandwich;
 import com.pluralsight.deliOrder.SandwichOrder;
@@ -186,7 +187,12 @@ public class Main {
     }
 
     private static void addChips(SandwichOrder order) {
+        System.out.println("What type of chips would you like? ");
+        String chipsChoice = scanner.next();
 
+        Chips chips = new Chips(chipsChoice);
+        order.addChips(chips);
+        System.out.println("Chips Added.");
 
 
     }
