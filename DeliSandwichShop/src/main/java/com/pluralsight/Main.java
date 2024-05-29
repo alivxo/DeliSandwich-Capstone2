@@ -150,32 +150,45 @@ public class Main {
         System.out.println(sandwichDisplay);
 
         System.out.print("What bread size would you like?:  ");
-        int breadSize = scanner.nextInt();
+        int sandwichSize = scanner.nextInt();
 
         System.out.print("What type of bread would you like?: ");
-        String breadChoice = scanner.nextLine();
+        String bread = scanner.nextLine();
         scanner.nextLine();
 
         System.out.print("What type of meat would you like?:  ");
-        String meatChoice = scanner.nextLine();
+        String meat = scanner.nextLine();
 
-        System.out.print("Would you like extra meat?");
-        String extraMeat = scanner.nextLine();
+        System.out.print("Would you like extra meat?: ");
+        String extraMeatChoice = scanner.nextLine();
+        String extraMeat = "no";
+        if(extraMeatChoice.equalsIgnoreCase("yes")){
+            System.out.println("What type of meat would you like to add?: ");
+            extraMeat = scanner.nextLine();
+        }
 
         System.out.print("What type of cheese would you like?: ");
-        String cheeseChoice = scanner.nextLine();
+        String cheese = scanner.nextLine();
 
         System.out.print("Would you like extra cheese?: ");
-        String extraCheese = scanner.nextLine();
+        String extraCheeseChoice = scanner.nextLine();
+        String extraCheese = "no";
+        if(extraCheeseChoice.equalsIgnoreCase("yes")){
+            System.out.println("What type of cheese would you like to add?: ");
+            extraCheese = scanner.nextLine();
+        }
 
         System.out.print("Would you like any sauce?: ");
-        String sauceChoice = scanner.nextLine();
+        String sauces= scanner.nextLine();
+
+        System.out.println("Would you like any toppings?: ");
+        String toppings = scanner.nextLine();
 
         System.out.print("Would you like your sandwich toasted? (yes/no): ");
-        boolean toastedBread = scanner.nextLine().equalsIgnoreCase("yes");
+        boolean toastedBread = scanner.nextBoolean();
 
-        Sandwich sandwich = new Sandwich(breadSize,breadChoice,meatChoice,
-                            cheeseChoice,extraMeat,extraCheese,toastedBread,sauceChoice);
+        Sandwich sandwich = new Sandwich(sandwichSize,bread,meat,
+                            cheese,extraMeat,extraCheese,toastedBread,sauces, toppings);
         order.addSandwich(sandwich);
         System.out.println("Sandwich added.");
 

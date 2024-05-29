@@ -63,7 +63,7 @@ public class SandwichOrder {
 
         // Going over each bag of chips on the list and
         // append its string representation followed by a newline to the StringBuilder
-        chips.forEach(chips1 -> stringBuilder.append(chips).append("\n"));
+        chips.forEach(chip -> stringBuilder.append(chip).append("\n"));
 
         // Convert the StringBuilder to a String and return it
         return stringBuilder.toString();
