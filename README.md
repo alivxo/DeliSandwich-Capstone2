@@ -67,7 +67,5 @@ DeliSandiwch-CapStone 2
 ## Screens
 
 ### Home Screen
-[Blank diagram.pdf](https://github.com/user-attachments/files/15506329/Blank.diagram.pdf)
-
-  
+[DeliSandwichdiagram.pdf](https://github.com/user-attachments/files/15506342/DeliSandwichdiagram.pdf)
 
