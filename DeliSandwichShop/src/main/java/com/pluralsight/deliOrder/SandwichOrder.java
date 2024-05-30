@@ -5,18 +5,28 @@ import java.util.List;
 
 public class SandwichOrder {
 
+    // Declare and initialize a list of Sandwich objects. This list will store all the sandwiches in an order.
     private final List<Sandwich> sandwiches = new ArrayList<>();
+    // Declare and initialize a list of Drinks objects. This list will store all the drinks in an order.
     private final List<Drinks> drinks = new ArrayList<>();
+    // Declare and initialize a list of Chips objects. This list will store all the chips in an order.
     private final List<Chips> chips = new ArrayList<>();
 
+
+    // Method to add a sandwich to the order. The method takes a Sandwich object as a parameter
+    // and adds it to the sandwiches list.
     public void addSandwich(Sandwich sandwich) {
         sandwiches.add(sandwich);
     }
 
+    // Method to add a drink to the order. The method takes a Drinks object
+    // as a parameter and adds it to the drinks list.
     public void addDrink(Drinks drink) {
         drinks.add(drink);
     }
 
+    // Method to add chips to the order. The method takes a Chips object
+    // as a parameter and adds it to the chips list.
     public void addChips(Chips chip) {
         chips.add(chip);
     }
