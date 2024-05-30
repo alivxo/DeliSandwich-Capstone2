@@ -81,7 +81,6 @@ public class Main {
                     break;
                 case "4", "checkout", "Checkout":
                     checkout(order);
-                    choice = false;
                     break;
                 case "0", "exit", "Exit":
                     homeScreen();
@@ -235,7 +234,6 @@ public class Main {
         if (userDrinkChoice.equalsIgnoreCase("yes")) {
             addDrink(order);
         }
-        checkout(order);
     }
 
 
@@ -284,7 +282,6 @@ public class Main {
         if (chipChoice.equalsIgnoreCase("yes")) {
             addChips(order);
         }
-        checkout(order);
     }
 
     private static void addChips(SandwichOrder order) {
@@ -349,23 +346,26 @@ public class Main {
     }
 
     private static void orderReciept(SandwichOrder order) {
+        System.out.println("Order");
+        System.out.println(order);
+
 
         String receipt = order.toString() + "Total Cost: $ " + order.orderTotal();
-        File file = new File ("order.txt");
+        File file = new File ("src/main/resources/order.txt");
         try {
-
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write ("Today's Date: " + formattedDate + "\n" + "Today's Time: " + formattedTime + "\n" + receipt);
             bufferedWriter.close();
 
-            System.out.println(" Have a great day!");
+            System.out.println("Receipt was successfully saved. Have a great day!");
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
     }
 }
