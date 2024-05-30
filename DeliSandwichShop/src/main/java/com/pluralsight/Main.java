@@ -1,7 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.deliOrder.Chips;
-import com.pluralsight.deliOrder.Drink;
+import com.pluralsight.deliOrder.Drinks;
 import com.pluralsight.deliOrder.Sandwich;
 import com.pluralsight.deliOrder.SandwichOrder;
 
@@ -14,42 +14,43 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static final Scanner scanner = new Scanner (System.in);
+    public static final Scanner scanner = new Scanner(System.in);
     static final LocalDateTime today = LocalDateTime.now();
     static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     static final String formattedDate = today.format(dateFormat);
     static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
     static final String formattedTime = today.format(timeFormat);
+    private static Sandwich sandwiches;
 
     public static void main(String[] args) {
         homeScreen();
     }
-        public static void homeScreen() {
 
-            boolean choice = true;
+    private static void homeScreen() {
+        boolean choice = true;
 
-            while (choice) {
-                String homeScreen = """
-                        Welcome to Ice Spice Deli
-                        1. New Order
-                        0. Exit - exit the application
-                        """;
-                System.out.println(homeScreen);
-                System.out.print("Please choose from the following: ");
-                String userchoice = scanner.nextLine();
+        while (choice) {
+            String homeScreen = """
+                    Welcome to Ice Spice Deli
+                    1. New Order
+                    0. Exit - exit the application
+                    """;
+            System.out.println(homeScreen);
+            System.out.print("Please choose from the following: ");
+            String userchoice = scanner.nextLine();
 
-                switch (userchoice) {
-                    case "1", "New Order", "new order":
-                        orderScreen();
-                        break;
-                    case "exit", "Exit", "0":
-                        choice = false;
-                        break;
-                    default:
-                        System.out.println("Sorry Spice didn't get that");
-                }
+            switch (userchoice) {
+                case "1", "New Order", "new order":
+                    orderScreen();
+                    break;
+                case "exit", "Exit", "0":
+                    choice = false;
+                    break;
+                default:
+                    System.out.println("Sorry Spice didn't get that");
             }
         }
+    }
 
     private static void orderScreen() {
         SandwichOrder order = new SandwichOrder();
@@ -64,31 +65,37 @@ public class Main {
         System.out.println(deliScreen);
         System.out.print("Choose from the following: ");
         String userChoice = scanner.nextLine();
-
         boolean choice = true;
-        switch (userChoice){
-            case "1", "add sandwich", "Add Sandwich": addSandwich(order);
-            break;
-            case "2", "add drink", "Add Drink": addDrink(order);
-            break;
-            case "3", "add chips", "Add Chips": addChips(order);
-            break;
-            case "4", "checkout", "Checkout": checkout(order);
-            break;
-            case "0", "exit", "Exit": homeScreen();
-            break;
-            default:
-                System.out.println("Please choose valid answer");
+        while (choice) {
+            switch (userChoice) {
+                case "1", "add sandwich", "Add Sandwich":
+                    addSandwich(order);
+                    break;
+                case "2", "add drink", "Add Drink":
+                    addDrink(order);
+                    break;
+                case "3", "add chips", "Add Chips":
+                    addChips(order);
+                    break;
+                case "4", "checkout", "Checkout":
+                    checkout(
+
+                            order);
+                    break;
+                case "0", "exit", "Exit":
+                    homeScreen();
+                    break;
+                default:
+                    System.out.println("Please choose valid answer");
 
 
+            }
         }
-
-
     }
 
     private static void addSandwich(SandwichOrder order) {
         String sandwichDisplay = """
-                
+                                
                 ____________________________________________
                 |SANDWICH PRICES | 4"     | 8"     | 12"   |
                 |__________________________________________|
@@ -149,78 +156,161 @@ public class Main {
                 """;
         System.out.println(sandwichDisplay);
 
-        System.out.print("What bread size would you like?:  ");
-        int sandwichSize = scanner.nextInt();
+        boolean choice = true;
 
-        System.out.print("What type of bread would you like?: ");
-        String bread = scanner.nextLine();
-        scanner.nextLine();
+        while (choice) {
 
-        System.out.print("What type of meat would you like?:  ");
-        String meat = scanner.nextLine();
+            System.out.println("What size bread would you like?: ");
+            int sandwichSize = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.print("Would you like extra meat?: ");
-        String extraMeatChoice = scanner.nextLine();
-        String extraMeat = "no";
-        if(extraMeatChoice.equalsIgnoreCase("yes")){
-            System.out.println("What type of meat would you like to add?: ");
-            extraMeat = scanner.nextLine();
+            System.out.println("What type of bread would you like?: ");
+            String bread = scanner.nextLine();
+
+            System.out.println("What type of meat would you like?: ");
+            String meat = scanner.nextLine();
+
+            System.out.println("Would you like extra meat?: ");
+            String extraMeatoption = scanner.nextLine();
+            String extraMeat = null;
+            if (extraMeatoption.equalsIgnoreCase("yes")) {
+                System.out.println("What type of meat would you like to add?: ");
+                extraMeat = scanner.nextLine();
+            }
+
+            System.out.println("What type of cheese would you like?: ");
+            String cheese = scanner.nextLine();
+
+            System.out.println("Would you like extra cheese?: ");
+            String extraCheeseoption = scanner.nextLine();
+            String extraCheese = null;
+            if (extraCheeseoption.equalsIgnoreCase("yes")) {
+                System.out.println("What type of cheese would you like to add?: ");
+                extraCheese = scanner.nextLine();
+            }
+
+            System.out.println("Would you like any sauce?:  ");
+            String sauce = scanner.nextLine();
+
+            System.out.println("Would you like your bread toasted?: ");
+            String breadToasted = scanner.nextLine();
+
+            Sandwich sandwich = new Sandwich(sandwichSize,bread,meat,extraMeat,
+                    cheese,extraCheese, sauce, breadToasted);
+
+            order.addSandwich(sandwich);
+            System.out.println("Sandwich added to basket");
+
+            System.out.println("Would you like to create another sandwich?(yes/no): ");
+            String userSandwichChoice = scanner.nextLine();
+
+            if (!userSandwichChoice.equalsIgnoreCase("yes")) {
+                choice = false;
+            } else {
+                askforDrink(order);
+            }
+
+
         }
-
-        System.out.print("What type of cheese would you like?: ");
-        String cheese = scanner.nextLine();
-
-        System.out.print("Would you like extra cheese?: ");
-        String extraCheeseChoice = scanner.nextLine();
-        String extraCheese = "no";
-        if(extraCheeseChoice.equalsIgnoreCase("yes")){
-            System.out.println("What type of cheese would you like to add?: ");
-            extraCheese = scanner.nextLine();
-        }
-
-        System.out.print("Would you like any sauce?: ");
-        String sauces= scanner.nextLine();
-
-        System.out.println("Would you like any toppings?: ");
-        String toppings = scanner.nextLine();
-
-        System.out.print("Would you like your sandwich toasted? (yes/no): ");
-        boolean toastedBread = scanner.nextBoolean();
-
-        Sandwich sandwich = new Sandwich(sandwichSize,bread,meat,
-                            cheese,extraMeat,extraCheese,toastedBread,sauces, toppings);
-        order.addSandwich(sandwich);
-        System.out.println("Sandwich added.");
-
-
     }
 
+    private static void askforDrink(SandwichOrder order) {
+        System.out.println("Would you like to add a drink? (yes/no): ");
+        String userDrinkChoice = scanner.nextLine();
+        if (userDrinkChoice.equalsIgnoreCase("yes")) {
+            addDrink(order);
+        }
+    }
+
+
     private static void addDrink(SandwichOrder order) {
-        System.out.println("What size drink would you like: ");
-        String drinkSizeChoice = scanner.nextLine();
+        boolean choice = true;
+        while (choice) {
 
-        System.out.println("What flavor drink would you like?: ");
-        String drinkFlavorChoice = scanner.nextLine();
+            String drinkMenu = """
+                ____________________________________________
+                |Drinks          | Small  | Medium | Large |
+                |__________________________________________|
+                |- Arizona       | $2.00  | $2.50  | $3.00 |
+                |- Sparkling     |        |        |       |     
+                |- Coca Cola     |        |        |       |  
+                |- Water         |        |        |       |     
+                |- Ginger Ale    |        |        |       |
+                |__________________________________________| 
+                    """;
 
-        Drink drink = new Drink(drinkFlavorChoice,drinkSizeChoice);
-        order.addDrink(drink);
-        System.out.println("Drink Added.");
+            System.out.println(drinkMenu);
 
+            System.out.println("What size drink would you like: ");
+            String drinkSizeChoice = scanner.nextLine();
+
+            System.out.println("What flavor drink would you like?: ");
+            String drinkFlavorChoice = scanner.nextLine();
+
+            Drinks drink = new Drinks(drinkFlavorChoice, drinkSizeChoice);
+            order.addDrink(drink);
+            System.out.println("Drink Added.");
+
+
+            System.out.println("Would you like to create another drink?(yes/no): ");
+            String userDrinkChoice = scanner.nextLine();
+
+            if (userDrinkChoice.equalsIgnoreCase("yes")) {
+                choice = false;
+            } else {
+                askforChips(order);
+            }
+
+        }
+    }
+
+    private static void askforChips(SandwichOrder order) {
+        System.out.println("What would you like a bag of chips(yes/no)?: ");
+        String chipChoice = scanner.nextLine();
+        if (chipChoice.equalsIgnoreCase("yes")) {
+            addChips(order);
+        }
     }
 
     private static void addChips(SandwichOrder order) {
-        System.out.println("What type of chips would you like? ");
-        String chipsChoice = scanner.next();
+        String chipsMenu = """
+                ____________________________________________
+                |Chips          ALL CHIPS $1.50            |
+                |__________________________________________|
+                |- Hot Cheetos   |        |        |       |
+                |- Doritos       |        |        |       |     
+                |- Baked Lays    |        |        |       |  
+                |- Pringles      |        |        |       |     
+                |- Onion Rings   |        |        |       |
+                |__________________________________________| 
+                    """;
+        System.out.println(chipsMenu);
 
-        Chips chips = new Chips(chipsChoice);
-        order.addChips(chips);
-        System.out.println("Chips Added.");
+        boolean choice = true;
+        while (choice) {
+            System.out.println("What type of chip would you like: ");
+            String chips = scanner.nextLine();
+
+            Chips chip = new Chips(chips);
+            order.addChips(chip);
+            System.out.println("Chip Added.");
+
+            System.out.println("Would you like to add another bag of chips?(yes/no): ");
+            String userChipChoice2 = scanner.nextLine();
+
+            if (userChipChoice2.equalsIgnoreCase("yes")) {
+                choice = false;
+            } else {
+                checkout(order);
+            }
+        }
     }
 
     private static void checkout(SandwichOrder order) {
+
         System.out.println("Order: ");
         System.out.println(order);
-        System.out.println("Total Cost: $ " + order.sandwichTotal());
+        System.out.println("Total Cost: $ " + order.orderTotal());
 
         String orderCost = """
                 1. Confirm
@@ -232,7 +322,7 @@ public class Main {
 
         switch (choice){
             case 1: orderReciept(order);
-            break;
+                break;
             case 0:
                 System.out.println("Order is cancelled.");
                 break;
@@ -242,24 +332,24 @@ public class Main {
 
     }
 
-    private static void orderReciept(SandwichOrder order) {
-        try {
+        private static void orderReciept (SandwichOrder order){
+            try {
 
-            FileWriter fileWriter = new FileWriter("customerReceipt.txt", true);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                FileWriter fileWriter = new FileWriter("customerReceipt.txt", true);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(formattedDate + "|\n" + formattedTime + "|\n" + order.toString());
-            bufferedWriter.newLine();
+                bufferedWriter.write(formattedDate + "|\n" + formattedTime + "|\n" + order.toString());
+                bufferedWriter.newLine();
 
-            bufferedWriter.write("Total Cost: $ " + order.sandwichTotal());
-            bufferedWriter.newLine();
+                bufferedWriter.write("Total Cost: $ " + order.orderTotal());
+                bufferedWriter.newLine();
 
-            bufferedWriter.close();
+                bufferedWriter.close();
 
 
-        } catch (IOException e) {
-            System.out.println("Receipt wasn't saved, please try again" + e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Receipt wasn't saved, please try again" + e.getMessage());
+            }
+
         }
-
     }
-}

@@ -5,29 +5,30 @@ import java.util.List;
 
 public class SandwichOrder {
     List<Sandwich> sandwiches = new ArrayList<>();
-    List <Drink> drinks = new ArrayList<>();
+    List <Drinks> drinks = new ArrayList<>();
     List <Chips> chips = new ArrayList<>();
 
     public void addSandwich (Sandwich sandwich){
         sandwiches.add(sandwich);
     }
-    public void addDrink (Drink drink) {
+    public void addDrink (Drinks drink) {
         drinks.add(drink);
     }
     public void addChips (Chips chip) {
         chips.add(chip);
     }
 
-    public double sandwichTotal() {
+
+    public double orderTotal() {
         // converting the list of sandwiches into a stream and mapping each sanwdwich
         // to its cost using the sandwichCost() method and sum up the cost of the sandwich
 
-        double sandwichTotalCost = sandwiches.stream().mapToDouble(Sandwich::sandwichCost).sum();
+        double sandwichTotalCost = sandwiches.stream().mapToDouble(Sandwich::sandwichPrice).sum();
 
         // converting the list of drinks into a stream and mapping each drink
         // to its cost using the drinkCost() method and sum up the cost of each drink
 
-        double drinkTotalCost = drinks.stream().mapToDouble(Drink::drinkCost).sum();
+        double drinkTotalCost = drinks.stream().mapToDouble(Drinks::drinkCost).sum();
 
         // converting the list of chips into a stream and mapping each chips
         // to its cost using the chipsCost() method and sum up the cost of each bag of chips
@@ -70,3 +71,4 @@ public class SandwichOrder {
     }
 
 }
+
