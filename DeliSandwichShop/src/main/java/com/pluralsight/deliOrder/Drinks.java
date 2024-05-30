@@ -24,7 +24,7 @@ public class Drinks {
 
     @Override
     public String toString() {
-        return "Drink:" + drinkFlavorChoice + " " + drinkSizeChoice + " - " + drinkCost();
+        return "Drink:" + drinkFlavorChoice + " - " + drinkSizeChoice + " - $ " + drinkCost();
 
     }
 

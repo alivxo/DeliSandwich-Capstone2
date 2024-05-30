@@ -4,71 +4,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SandwichOrder {
-    List<Sandwich> sandwiches = new ArrayList<>();
-    List <Drinks> drinks = new ArrayList<>();
-    List <Chips> chips = new ArrayList<>();
 
-    public void addSandwich (Sandwich sandwich){
+    private final List<Sandwich> sandwiches = new ArrayList<>();
+    private final List<Drinks> drinks = new ArrayList<>();
+    private final List<Chips> chips = new ArrayList<>();
+
+    public void addSandwich(Sandwich sandwich) {
         sandwiches.add(sandwich);
     }
-    public void addDrink (Drinks drink) {
+
+    public void addDrink(Drinks drink) {
         drinks.add(drink);
     }
-    public void addChips (Chips chip) {
+
+    public void addChips(Chips chip) {
         chips.add(chip);
     }
 
-
     public double orderTotal() {
-        // converting the list of sandwiches into a stream and mapping each sanwdwich
-        // to its cost using the sandwichCost() method and sum up the cost of the sandwich
 
-        double sandwichTotalCost = sandwiches.stream().mapToDouble(Sandwich::sandwichPrice).sum();
+        // Calculate the total cost of sandwiches
+        double sandwichTotal = sandwiches.stream().mapToDouble(Sandwich::sandwichPrice).sum();
 
-        // converting the list of drinks into a stream and mapping each drink
-        // to its cost using the drinkCost() method and sum up the cost of each drink
+        // Calculate the total cost of drinks
+        double drinkTotal = drinks.stream().mapToDouble(Drinks::drinkCost).sum();
 
-        double drinkTotalCost = drinks.stream().mapToDouble(Drinks::drinkCost).sum();
+        // Calculate the total cost of chips
+        double chipTotal = chips.stream().mapToDouble(Chips::chipCost).sum();
 
-        // converting the list of chips into a stream and mapping each chips
-        // to its cost using the chipsCost() method and sum up the cost of each bag of chips
+        // Return the sum of all the total costs
+        double total = sandwichTotal + drinkTotal + chipTotal;
 
-        double chipTotalCost = chips.stream().mapToDouble(Chips::chipCost).sum();
-
-        // returning the sum of all the total cost
-        return sandwichTotalCost + drinkTotalCost + chipTotalCost;
+        return total;
     }
 
     @Override
-    public String toString (){
-        // creating String builder instance to build the string representation of the order
+    public String toString() {
+        // Create a StringBuilder instance to build the string representation of the order
+        StringBuilder builder = new StringBuilder();
 
-        StringBuilder stringBuilder = new StringBuilder();
+        // Append the header "Sandwiches:" followed by a new line
 
-        // Append the header "Sandwiches: " followed by a new line.
-        stringBuilder.append("Sandwiches: \n");
+        sandwiches.forEach(sandwich -> builder.append(sandwich).append("\n"));
 
-        // Going over each sandwich on the list and
-        // append its string representation followed by a newline to the StringBuilder
-        sandwiches.forEach(sandwich -> stringBuilder.append(sandwich).append("\n"));
+        // Append the header "Drinks:" followed by a new line
+        drinks.forEach(drink -> builder.append(drink).append("\n"));
 
-        // Append the header "Drinks: " followed by a new line.
-        stringBuilder.append("Drinks: \n");
-
-        // Going over each drink on the list and
-        // append its string representation followed by a newline to the StringBuilder
-        drinks.forEach(drink -> stringBuilder.append(drink).append("\n"));
-
-        // Append the header "Chips: " followed by a new line.
-        stringBuilder.append("Chips: \n");
-
-        // Going over each bag of chips on the list and
-        // append its string representation followed by a newline to the StringBuilder
-        chips.forEach(chip -> stringBuilder.append(chip).append("\n"));
+        // Append the header "Chips:" followed by a new line
+        chips.forEach(chip -> builder.append(chip).append("\n"));
 
         // Convert the StringBuilder to a String and return it
-        return stringBuilder.toString();
+        return builder.toString();
     }
-
 }
+
+
 

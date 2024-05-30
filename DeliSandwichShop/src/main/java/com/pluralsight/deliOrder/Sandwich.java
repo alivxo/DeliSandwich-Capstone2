@@ -9,9 +9,10 @@ public class Sandwich {
     private String extraCheese;
     private String sauce;
     private String breadToasted;
+    private String toppings;
 
     public Sandwich(int sandwichSize, String bread, String meat, String extraMeat,
-                    String cheese, String extraCheese, String sauce, String breadToasted) {
+                    String cheese, String extraCheese, String sauce, String breadToasted, String toppings) {
 
 
         this.sandwichSize = sandwichSize;
@@ -22,6 +23,7 @@ public class Sandwich {
         this.extraCheese = extraCheese;
         this.sauce = sauce;
         this.breadToasted = breadToasted;
+        this.toppings = toppings;
     }
 
 
@@ -75,10 +77,12 @@ public class Sandwich {
 
     @Override
     public String toString() {
-        return "Sandwich: " + sandwichSize + " inch, " + bread + " bread, " + meat + " meat, extra meat: " + extraMeat +
-                ", cheese: " + cheese + ", extra cheese: " + extraCheese + ", sauce: " +
-                sauce + ", bread toasted: " + breadToasted + " - Price: $" + sandwichPrice();
-
+        return  "Sandwich: " + sandwichSize + " inch sandwich with " + bread + " bread, " + meat + " meat" +
+                (extraMeat != null ? ", extra meat: " + extraMeat : "") +
+                (cheese != null ? ", cheese: " + cheese : "") +
+                (extraCheese != null ? ", extra cheese: " + extraCheese : "") +
+                ", toppings: " + toppings + ", sauce: " + sauce +
+                ", toasted: " + breadToasted + " - Price: $" + sandwichPrice();
     }
 }
 

@@ -6,6 +6,7 @@ import com.pluralsight.deliOrder.Sandwich;
 import com.pluralsight.deliOrder.SandwichOrder;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -189,14 +190,17 @@ public class Main {
                 extraCheese = scanner.nextLine();
             }
 
-            System.out.println("Would you like any sauce?:  ");
+            System.out.println("What type of sauce would you like?:  ");
             String sauce = scanner.nextLine();
+
+            System.out.println("Would you like any other toppings?:  ");
+            String toppings = scanner.nextLine();
 
             System.out.println("Would you like your bread toasted?: ");
             String breadToasted = scanner.nextLine();
 
             Sandwich sandwich = new Sandwich(sandwichSize,bread,meat,extraMeat,
-                    cheese,extraCheese, sauce, breadToasted);
+                    cheese,extraCheese, sauce, breadToasted, toppings);
 
             order.addSandwich(sandwich);
             System.out.println("Sandwich added to basket");
@@ -204,7 +208,7 @@ public class Main {
             System.out.println("Would you like to create another sandwich?(yes/no): ");
             String userSandwichChoice = scanner.nextLine();
 
-            if (!userSandwichChoice.equalsIgnoreCase("yes")) {
+            if (userSandwichChoice.equalsIgnoreCase("yes")) {
                 choice = false;
             } else {
                 askforDrink(order);
@@ -308,11 +312,8 @@ public class Main {
 
     private static void checkout(SandwichOrder order) {
 
-        System.out.println("Order: ");
-        System.out.println(order);
-        System.out.println("Total Cost: $ " + order.orderTotal());
-
         String orderCost = """
+                Would you like to Checkout?
                 1. Confirm
                 0. Cancel Order
                 """;
@@ -332,24 +333,28 @@ public class Main {
 
     }
 
-        private static void orderReciept (SandwichOrder order){
-            try {
+    private static void orderReciept(SandwichOrder order) {
 
-                FileWriter fileWriter = new FileWriter("customerReceipt.txt", true);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-                bufferedWriter.write(formattedDate + "|\n" + formattedTime + "|\n" + order.toString());
-                bufferedWriter.newLine();
-
-                bufferedWriter.write("Total Cost: $ " + order.orderTotal());
-                bufferedWriter.newLine();
-
-                bufferedWriter.close();
+        System.out.println("Order");
+        System.out.println(order);
 
 
-            } catch (IOException e) {
-                System.out.println("Receipt wasn't saved, please try again" + e.getMessage());
-            }
+        String receipt = order.toString() + "Total Cost: $ " + order.orderTotal();
+        File file = new File ("src/main/resources/order.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
+            bufferedWriter.write ("Today's Date: " + formattedDate + "\n" + "Today's Time: " + formattedTime + "\n" + receipt);
+            bufferedWriter.close();
+
+            System.out.println("Receipt was successfully saved. Have a great day!");
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+
+    }
     }

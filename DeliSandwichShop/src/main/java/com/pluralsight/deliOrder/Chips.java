@@ -13,7 +13,7 @@ public class Chips {
     }
     @Override
     public String toString (){
-        return "Chips: " + chipType + "-" + chipCost();
+        return "Chips: " + chipType + " - $" + chipCost();
     }
 }
 
