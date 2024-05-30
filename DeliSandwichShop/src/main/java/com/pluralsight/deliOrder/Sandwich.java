@@ -88,12 +88,15 @@ public class Sandwich {
 
     @Override
     public String toString() {
-        return  "Sandwich: "+ "\n"+ sandwichSize + " inch sandwich with " + bread + " bread" + "\n "+ meat + "meat: " + "\n"+
-                (extraMeat != null ? "extra meat: " + extraMeat : "") + "\n"+
-                (cheese != null ? "cheese: " + cheese : "") + "\n"+
-                (extraCheese != null ? "extra cheese: " + extraCheese : "") + "\n"+
-                "toppings: " + toppings +  "\n "+ "sauce: " + sauce+ "\n " +
-                "toasted: " + breadToasted +  "\n "+ "Price: $" + sandwichPrice();
+    return "Sandwich: \n" + sandwichSize + " inch sandwich with " + bread + " bread\n" +
+            "Meat: " + meat + "\n" +
+            (extraMeat != null && !extraMeat.isEmpty() ? "Extra meat: " + extraMeat + "\n" : "") +
+            (cheese != null && !cheese.isEmpty() ? "Cheese: " + cheese + "\n" : "") +
+            (extraCheese != null && !extraCheese.isEmpty() ? "Extra cheese: " + extraCheese + "\n" : "") +
+            "Toppings: " + toppings + "\n" +
+            "Sauce: " + sauce + "\n" +
+            "Toasted: " + breadToasted + "\n" +
+            "Price: $" + sandwichPrice();
     }
 }
 

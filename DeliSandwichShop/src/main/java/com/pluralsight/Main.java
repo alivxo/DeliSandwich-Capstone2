@@ -55,7 +55,9 @@ public class Main {
 
     private static void orderScreen() {
         SandwichOrder order = new SandwichOrder();
-        String deliScreen = """
+        boolean choice = true;
+        while (choice) {
+            String deliScreen = """
                 Welcome to Ice Spice Deli
                 1. Add Sandwich
                 2. Add Drink
@@ -63,11 +65,10 @@ public class Main {
                 4. Checkout
                 0. Cancel Order
                 """;
-        System.out.println(deliScreen);
-        System.out.print("Choose from the following: ");
-        String userChoice = scanner.nextLine();
-        boolean choice = true;
-        while (choice) {
+            System.out.println(deliScreen);
+            System.out.print("Choose from the following: ");
+            String userChoice = scanner.nextLine();
+
             switch (userChoice) {
                 case "1", "add sandwich", "Add Sandwich":
                     addSandwich(order);
@@ -79,9 +80,8 @@ public class Main {
                     addChips(order);
                     break;
                 case "4", "checkout", "Checkout":
-                    checkout(
-
-                            order);
+                    checkout(order);
+                    choice = false;
                     break;
                 case "0", "exit", "Exit":
                     homeScreen();
@@ -229,14 +229,13 @@ public class Main {
     }
 
     private static void askforDrink(SandwichOrder order) {
-
         System.out.println("Would you like to add a drink? (yes/no): ");
         String userDrinkChoice = scanner.nextLine();
         System.out.println(userDrinkChoice);
         if (userDrinkChoice.equalsIgnoreCase("yes")) {
-            System.out.println("burger finger");
             addDrink(order);
         }
+        checkout(order);
     }
 
 
@@ -285,6 +284,7 @@ public class Main {
         if (chipChoice.equalsIgnoreCase("yes")) {
             addChips(order);
         }
+        checkout(order);
     }
 
     private static void addChips(SandwichOrder order) {
@@ -321,7 +321,6 @@ public class Main {
     }
 
     private static void checkout(SandwichOrder order) {
-
         System.out.println("Cart: ");
         System.out.println(order);
         String receipt = order.toString() + "Total Cost: $ " + order.orderTotal();
@@ -333,8 +332,8 @@ public class Main {
                 0. Cancel Order
                 """;
         System.out.println(orderCost);
-
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         switch (choice){
             case 1: orderReciept(order);
@@ -344,26 +343,24 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid choice");
+                break;
         }
 
     }
 
     private static void orderReciept(SandwichOrder order) {
 
-        System.out.println("Order");
-        System.out.println(order);
-
-
         String receipt = order.toString() + "Total Cost: $ " + order.orderTotal();
-        File file = new File ("src/main/resources/order.txt");
+        File file = new File ("order.txt");
         try {
+
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write ("Today's Date: " + formattedDate + "\n" + "Today's Time: " + formattedTime + "\n" + receipt);
             bufferedWriter.close();
 
-            System.out.println("Receipt was successfully saved. Have a great day!");
+            System.out.println(" Have a great day!");
 
 
         } catch (IOException e) {
