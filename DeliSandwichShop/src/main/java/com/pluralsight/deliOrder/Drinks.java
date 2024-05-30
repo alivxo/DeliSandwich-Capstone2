@@ -13,11 +13,11 @@ public class Drinks {
     public double drinkCost() {
         double cost = 0;
         switch (drinkSizeChoice){
-            case "small","Small":
+            case "small","Small","s":
                 return 2.00;
-            case "medium", "Medium":
+            case "medium", "Medium","m":
                 return 2.50;
-            case "large", "Large":
+            case "large", "Large","l":
                 return 3.00;
         } return cost;
     }

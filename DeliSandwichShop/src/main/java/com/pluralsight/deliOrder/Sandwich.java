@@ -40,6 +40,17 @@ public class Sandwich {
         }
 
         // cost based on extra meat
+        if (meat != null && meat.equalsIgnoreCase("yes")) {
+            if (sandwichSize == 4) {
+                cost += .50;
+            } else if (sandwichSize == 8) {
+                cost += 1.00;
+            } else if (sandwichSize == 12) {
+                cost += 1.50;
+            }
+        }
+
+        // cost based on extra meat
         if (extraMeat != null && extraMeat.equalsIgnoreCase("yes")) {
             if (sandwichSize == 4) {
                 cost += .50;
@@ -77,12 +88,12 @@ public class Sandwich {
 
     @Override
     public String toString() {
-        return  "Sandwich: " + sandwichSize + " inch sandwich with " + bread + " bread, " + meat + " meat" +
-                (extraMeat != null ? ", extra meat: " + extraMeat : "") +
-                (cheese != null ? ", cheese: " + cheese : "") +
-                (extraCheese != null ? ", extra cheese: " + extraCheese : "") +
-                ", toppings: " + toppings + ", sauce: " + sauce +
-                ", toasted: " + breadToasted + " - Price: $" + sandwichPrice();
+        return  "Sandwich: "+ "\n"+ sandwichSize + " inch sandwich with " + bread + " bread" + "\n "+ meat + "meat: " + "\n"+
+                (extraMeat != null ? "extra meat: " + extraMeat : "") + "\n"+
+                (cheese != null ? "cheese: " + cheese : "") + "\n"+
+                (extraCheese != null ? "extra cheese: " + extraCheese : "") + "\n"+
+                "toppings: " + toppings +  "\n "+ "sauce: " + sauce+ "\n " +
+                "toasted: " + breadToasted +  "\n "+ "Price: $" + sandwichPrice();
     }
 }
 

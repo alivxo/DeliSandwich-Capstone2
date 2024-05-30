@@ -168,8 +168,13 @@ public class Main {
             System.out.println("What type of bread would you like?: ");
             String bread = scanner.nextLine();
 
-            System.out.println("What type of meat would you like?: ");
-            String meat = scanner.nextLine();
+            System.out.println("Would you like to add meat?: ");
+            String meatChoice = scanner.nextLine();
+            String meat = null;
+            if(meatChoice.equalsIgnoreCase("yes")){
+                System.out.println("What type of meat would you like?: ");
+                meat = scanner.nextLine();
+            }
 
             System.out.println("Would you like extra meat?: ");
             String extraMeatoption = scanner.nextLine();
@@ -179,8 +184,14 @@ public class Main {
                 extraMeat = scanner.nextLine();
             }
 
-            System.out.println("What type of cheese would you like?: ");
-            String cheese = scanner.nextLine();
+
+            System.out.println("Would you like to add cheese?: ");
+            String cheeseChoice = scanner.nextLine();
+            String cheese = null;
+            if(cheeseChoice.equalsIgnoreCase("yes")) {
+                System.out.println("What type of cheese would you like?: ");
+                cheese = scanner.nextLine();
+            }
 
             System.out.println("Would you like extra cheese?: ");
             String extraCheeseoption = scanner.nextLine();
@@ -208,20 +219,22 @@ public class Main {
             System.out.println("Would you like to create another sandwich?(yes/no): ");
             String userSandwichChoice = scanner.nextLine();
 
-            if (userSandwichChoice.equalsIgnoreCase("yes")) {
+            if (userSandwichChoice.equalsIgnoreCase("no")) {
                 choice = false;
-            } else {
                 askforDrink(order);
             }
 
-
         }
+
     }
 
     private static void askforDrink(SandwichOrder order) {
+
         System.out.println("Would you like to add a drink? (yes/no): ");
         String userDrinkChoice = scanner.nextLine();
+        System.out.println(userDrinkChoice);
         if (userDrinkChoice.equalsIgnoreCase("yes")) {
+            System.out.println("burger finger");
             addDrink(order);
         }
     }
@@ -256,15 +269,13 @@ public class Main {
             System.out.println("Drink Added.");
 
 
-            System.out.println("Would you like to create another drink?(yes/no): ");
+            System.out.println("Would you like to add another drink?(yes/no): ");
             String userDrinkChoice = scanner.nextLine();
 
-            if (userDrinkChoice.equalsIgnoreCase("yes")) {
+            if (userDrinkChoice.equalsIgnoreCase("no")) {
                 choice = false;
-            } else {
                 askforChips(order);
             }
-
         }
     }
 
@@ -302,9 +313,8 @@ public class Main {
             System.out.println("Would you like to add another bag of chips?(yes/no): ");
             String userChipChoice2 = scanner.nextLine();
 
-            if (userChipChoice2.equalsIgnoreCase("yes")) {
+            if (userChipChoice2.equalsIgnoreCase("no")) {
                 choice = false;
-            } else {
                 checkout(order);
             }
         }
@@ -312,14 +322,19 @@ public class Main {
 
     private static void checkout(SandwichOrder order) {
 
+        System.out.println("Cart: ");
+        System.out.println(order);
+        String receipt = order.toString() + "Total Cost: $ " + order.orderTotal();
+        System.out.println(receipt);
+
         String orderCost = """
                 Would you like to Checkout?
                 1. Confirm
                 0. Cancel Order
                 """;
         System.out.println(orderCost);
+
         int choice = scanner.nextInt();
-        scanner.nextLine();
 
         switch (choice){
             case 1: orderReciept(order);
@@ -355,6 +370,5 @@ public class Main {
             e.printStackTrace();
         }
 
-
     }
-    }
+}
