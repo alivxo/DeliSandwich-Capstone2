@@ -351,7 +351,7 @@ public class Main {
 
 
         String receipt = order.toString() + "Total Cost: $ " + order.orderTotal();
-        File file = new File ("src/main/resources/order.txt");
+        File file = new File ("order.txt");
         try {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
