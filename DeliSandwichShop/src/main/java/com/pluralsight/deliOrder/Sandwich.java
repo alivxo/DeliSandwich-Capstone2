@@ -40,6 +40,7 @@ public class Sandwich {
         }
 
         // cost based on extra meat
+        // Check if the variable 'meat' is not null and if its value equals "yes"
         if (meat != null && meat.equalsIgnoreCase("yes")) {
             if (sandwichSize == 4) {
                 cost += .50;
@@ -51,6 +52,7 @@ public class Sandwich {
         }
 
         // cost based on extra meat
+        // Check if the variable 'extraMeat' is not null and if its value equals "yes"
         if (extraMeat != null && extraMeat.equalsIgnoreCase("yes")) {
             if (sandwichSize == 4) {
                 cost += .50;
@@ -62,6 +64,7 @@ public class Sandwich {
         }
 
         // cost based on cheese
+        // Check if the variable 'cheese' is not null and if its value equals "yes"
         if (cheese != null && cheese.equalsIgnoreCase("yes")) {
             if (sandwichSize == 4) {
                 cost += .75;
@@ -73,6 +76,7 @@ public class Sandwich {
         }
 
         // cost based on extra cheese
+        // Check if the variable 'extraCheese' is not null and if its value equals "yes"
         if (extraCheese != null && extraCheese.equalsIgnoreCase("yes")) {
             if (sandwichSize == 4) {
                 cost += .75;
@@ -87,6 +91,7 @@ public class Sandwich {
     }
 
     @Override
+    // Define a public method named toString that returns a String representation of the object
     public String toString() {
     return "Sandwich: \n" + sandwichSize + " inch sandwich with " + bread + " bread\n" +
             "Meat: " + meat + "\n" +

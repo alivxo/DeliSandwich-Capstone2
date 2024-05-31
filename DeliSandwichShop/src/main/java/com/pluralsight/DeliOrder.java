@@ -14,14 +14,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
-public class Main {
+public class DeliOrder {
     public static final Scanner scanner = new Scanner(System.in);
     static final LocalDateTime today = LocalDateTime.now();
     static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     static final String formattedDate = today.format(dateFormat);
     static final DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-    static final String formattedTime = today.format(timeFormat);
-    private static Sandwich sandwiches;
+    static final String formattedTime = today.format(timeFormat);;
 
     public static void main(String[] args) {
         homeScreen();
@@ -92,7 +91,7 @@ public class Main {
             }
         }
     }
-
+    // Define a private static method named addSandwich that takes a SandwichOrder object as a parameter
     private static void addSandwich(SandwichOrder order) {
         String sandwichDisplay = """
                                 
@@ -209,10 +208,15 @@ public class Main {
             System.out.println("Would you like your bread toasted?: ");
             String breadToasted = scanner.nextLine();
 
+            // Create a new Sandwich object with the selected size, bread type, meat, extra meat,
+            // cheese, extra cheese, sauce, bread toasted option, and toppings
             Sandwich sandwich = new Sandwich(sandwichSize,bread,meat,extraMeat,
                     cheese,extraCheese, sauce, breadToasted, toppings);
 
+            // Add the created sandwich object to the order
             order.addSandwich(sandwich);
+
+            // Prompt the user to ask if they would like to create another sandwich
             System.out.println("Sandwich added to basket");
 
             System.out.println("Would you like to create another sandwich?(yes/no): ");
@@ -261,8 +265,11 @@ public class Main {
             System.out.println("What flavor drink would you like?: ");
             String drinkFlavorChoice = scanner.nextLine();
 
+            // Create a new Drinks object with the selected flavor and size choices
             Drinks drink = new Drinks(drinkFlavorChoice, drinkSizeChoice);
+            // Add the created drink object to the order
             order.addDrink(drink);
+            // Print a confirmation message indicating the drink has been added
             System.out.println("Drink Added.");
 
 
@@ -303,8 +310,11 @@ public class Main {
             System.out.println("What type of chip would you like: ");
             String chips = scanner.nextLine();
 
+            // Create a new Chips object with the selected chip type
             Chips chip = new Chips(chips);
+            // Add the created chip object to the order
             order.addChips(chip);
+            // Print a confirmation message indicating the chip has been added
             System.out.println("Chip Added.");
 
             System.out.println("Would you like to add another bag of chips?(yes/no): ");
@@ -316,6 +326,8 @@ public class Main {
             }
         }
     }
+
+
 
     private static void checkout(SandwichOrder order) {
         System.out.println("Cart: ");
@@ -345,6 +357,8 @@ public class Main {
 
     }
 
+
+    // Define a private static method named orderReceipt that takes a SandwichOrder object as a parameter
     private static void orderReciept(SandwichOrder order) {
         System.out.println("Order");
         System.out.println(order);

@@ -1,15 +1,20 @@
 Today's Date: 2024/05/30
-Today's Time: 19:47:46
+Today's Time: 21:45:23
 Sandwich: 
-4 inch sandwich with White bread
-Meat: Ham
-Extra meat: Ham
-Extra cheese: Swiss
-Toppings: lettuce, salt , pepper
-Sauce: mayo
-Toasted: yes
-Price: $5.5
-Drink:Sparkling - Small - $ 2.0
-Drink:Coco Cola - Large - $ 3.0
-Chips: Hot Cheetos - $1.5
-Total Cost: $ 12.0
+8 inch sandwich with White bread
+Meat: Turkey
+Cheese: American
+Toppings: no
+Sauce: no
+Toasted: no
+Price: $7.0
+Sandwich: 
+8 inch sandwich with  bread
+Meat: null
+Toppings: 
+Sauce: 
+Toasted: 
+Price: $7.0
+Drink:Coca Cola - large - $ 3.0
+Chips: Baked lays - $1.5
+Total Cost: $ 18.5
